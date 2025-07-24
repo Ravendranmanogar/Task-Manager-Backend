@@ -9,8 +9,19 @@ const getAllTasks = async(req,res) => {
     }
     
 }
-const getTask = (req,res) => {
-    res.json({id:req.params.id})
+const getTask = async (req,res) => {
+    //res.json({id:req.params.id})
+    try{
+        const{id:taskID} = req.params
+        const task = await Task.findOne({_id:taskID})
+        if(!Task){
+            return res.status(404).json({msg:`No Task with this ID: ${taskID}`})
+        }
+        res.status(200).json({task})
+    }
+    catch(error){
+        res.status(500).json({msg: error})
+    }
 }
 const createTask = async (req,res) => {
     try{
@@ -22,11 +33,44 @@ const createTask = async (req,res) => {
     }
     
 }
-const updateTasks = (req,res) => {
-    res.send("update task")
+const updateTasks = async(req,res) => {
+    try{
+        const{id:taskID} = req.params
+        const task = await Task.findOneAndUpdate({_id:taskID},req.body,{new : true, runValidators:true})
+        if(!Task){
+            return res.status(404).json({msg:`No Task with this ID: ${taskID}`})
+        }
+        res.status(200).json({task})
+    }
+    catch(error){
+        res.status(500).json({msg: error})
+    }
 }
-const deleteTasks = (req,res) => {
-    res.send("delete task")
+// const editTask = async(req,res) => {
+//     try{
+//         const{id:taskID} = req.params
+//         const task = await Task.findOneAndUpdate({_id:taskID},req.body,{new : true, runValidators:true,overwrite:true})
+//         if(!Task){
+//             return res.status(404).json({msg:`No Task with this ID: ${taskID}`})
+//         }
+//         res.status(200).json({task})
+//     }
+//     catch(error){
+//         res.status(500).json({msg: error})
+//     }
+// }
+const deleteTasks = async(req,res) => {
+    try{
+        const{id:taskID} = req.params
+        const task = await Task.findOneAndDelete({_id:taskID})
+        if(!Task){
+            return res.status(404).json({msg:`No Task with this ID: ${taskID}`})
+        }
+        res.status(200).json({task})
+    }
+    catch(error){
+        res.status(500).json({msg: error})
+    }
 }
 
 module.exports = {getAllTasks,getTask,createTask,updateTasks,deleteTasks}
