@@ -1,29 +1,30 @@
 # Task Manager Backend
 
-This is my **first backend project**: a **Task Management API** built with **Node.js**, **Express.js**, **MongoDB**, and **JWT authentication**.
+**Task-Manager-Backend** is my **first backend project** — a RESTful API for managing personal tasks, built using Node.js, Express.js, and MongoDB.  
+Authentication is handled via regular sessions or basic token logic (no JWT).
 
 ---
 
 ## 🚀 Features
 
-- User registration and login with **hashed passwords**
-- Secure authentication with **JWT tokens**
-- CRUD operations for tasks:
-  - Create, Read (list & by ID), Update, Delete
-- Task metadata: `title`, `description`, `status` (e.g. pending/completed), optional `dueDate` or `category`
-- Authentication middleware to protect routes
+- User registration & login with **hashed passwords** (bcrypt)
+- Simple authentication mechanism (sessions or custom tokens)
+- CRUD operations on tasks:
+  - Create, Read (list & single), Update, Delete
+- Task properties include: `title`, `description`, `status` (e.g. pending/completed)
+- Middleware to protect task routes for authenticated users only
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Node.js** & **Express.js**
+- **Node.js** + **Express.js**
 - **MongoDB** with **Mongoose**
 - **bcrypt.js** for password hashing
-- **jsonwebtoken** for token-based authentication
-- **dotenv** for managing environment variables
-- **express-validator** for input validation
-- (Optional) **cors** middleware if you plan a separate frontend
+- Alternative auth method (e.g. session cookies or plain tokens) instead of JWT
+- **dotenv** for environment variables
+- **express-validator** (or similar) for request validation
+- (Optional) **cors** for handling cross-origin access
 
 ---
 
@@ -31,26 +32,12 @@ This is my **first backend project**: a **Task Management API** built with **Nod
 
 ### Prerequisites
 
-- Node.js (v14 or above)
-- MongoDB (either local instance or Atlas cloud)
+- Node.js (v14+)
+- MongoDB (local or Atlas)
 
-### Steps
+### Setup
 
 ```bash
-# 1. Clone the repo
 git clone https://github.com/Ravendranmanogar/Task‑Manager‑Backend.git
 cd Task‑Manager‑Backend
-
-# 2. Install dependencies
 npm install
-
-# 3. Create `.env` file with these keys:
-PORT=5000
-MONGODB_URI=your_mongo_connection_string
-JWT_SECRET=your_jwt_secret_key
-JWT_EXPIRATION=1d
-
-# 4. Run the server
-npm run dev
-# or
-npm start
