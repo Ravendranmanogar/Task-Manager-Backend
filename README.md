@@ -7,8 +7,6 @@ Authentication is handled via regular sessions or basic token logic (no JWT).
 
 ## 🚀 Features
 
-- User registration & login with **hashed passwords** (bcrypt)
-- Simple authentication mechanism (sessions or custom tokens)
 - CRUD operations on tasks:
   - Create, Read (list & single), Update, Delete
 - Task properties include: `title`, `description`, `status` (e.g. pending/completed)
@@ -20,8 +18,6 @@ Authentication is handled via regular sessions or basic token logic (no JWT).
 
 - **Node.js** + **Express.js**
 - **MongoDB** with **Mongoose**
-- **bcrypt.js** for password hashing
-- Alternative auth method (e.g. session cookies or plain tokens) instead of JWT
 - **dotenv** for environment variables
 - **express-validator** (or similar) for request validation
 - (Optional) **cors** for handling cross-origin access
@@ -41,3 +37,8 @@ Authentication is handled via regular sessions or basic token logic (no JWT).
 git clone https://github.com/Ravendranmanogar/Task‑Manager‑Backend.git
 cd Task‑Manager‑Backend
 npm install
+
+# Create .env file
+MONGODB_URI=mongodb://localhost:27017/taskmanager
+AUTH_SECRET=your_secret_key
+
